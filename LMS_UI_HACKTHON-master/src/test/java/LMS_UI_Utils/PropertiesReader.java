@@ -4,7 +4,7 @@ import java.io.FileInputStream;
 import java.util.Properties;
 
 public class PropertiesReader {
-	FileInputStream fis;
+	FileInputStream fis; 
 
 	public Properties loadProperties() {
 		try {
