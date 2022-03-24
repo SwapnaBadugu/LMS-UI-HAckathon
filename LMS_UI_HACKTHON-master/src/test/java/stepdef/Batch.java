@@ -1,5 +1,4 @@
 package stepdef;
-
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -12,6 +11,10 @@ import io.cucumber.java.en.When;
 
 public class Batch {
 	WebDriver driver;
+	public Batch() throws Exception {
+		Login login=new Login();
+		login.driver=driver;
+		}
 
 	WebElement Batches = driver.findElement(By.linkText("Batches"));
 
@@ -25,7 +28,7 @@ public class Batch {
 
 	}
 
-	@Given("Admin is on Manage Batches Page (admin) screen, by clicking on batches tab")
+	@Given("Admin is on Manage Batches Page admin screen by clicking on batches tab")
 	public void admin_is_on_manage_batches_page_admin_screen_by_clicking_on_batches_tab() {
 		{
 			// Clicking on batches
@@ -56,7 +59,7 @@ public class Batch {
 
 	}
 
-	@Then("Newly Added Batch Details will be displayed in Manage Batches Page (Admin)")
+	@Then("Newly Added Batch Details will be displayed in Manage Batches Page Admin")
 	public void newly_added_batch_details_will_be_displayed_in_manage_batches_page_admin() {
 
 		int actualcount = bcount();
@@ -100,8 +103,13 @@ public class Batch {
 		driver.findElement(By.id("btnSubmit")).click();
 	}
 
-	@Then("Updated Batch details will be displayed in Manage Batches Page (Admin)")
+	@Then("Updated Batch details will be displayed in Manage Batches Page Admin")
 	public void updated_batch_details_will_be_displayed_in_manage_batches_page_admin() {
+		int actualcount = bcount();
+		Batches.click();
+		int expcount = bcount();
+		// Asserting Batches
+		Assert.assertEquals(actualcount, expcount);
 	}
 
 	@When("Admin Delete an existing Batch")
@@ -110,7 +118,7 @@ public class Batch {
 		driver.findElement(By.id("btnDelBatch")).click();
 	}
 
-	@Then("Deleted Batch details will be removed from Manage Batches Page (Admin)")
+	@Then("Deleted Batch details will be removed from Manage Batches Page Admin")
 	public void deleted_batch_details_will_be_removed_from_manage_batches_page_admin() {
 
 		int actualcount = bcount();
@@ -125,19 +133,19 @@ public class Batch {
 		driver.findElement(By.linkText("Existing Batch Details")).getText();
 	}
 
-	@Then("All the existing Batch details details will be displayed in Manage Batches Page\\(Admin)")
+	@Then("All the existing Batch details details will be displayed in Manage Batches Page Admin")
 	public void all_the_existing_batch_details_details_will_be_displayed_in_manage_batches_page_admin() {
 		WebElement SuccessfulMessage = driver.findElement(By.linkText("All Existing Batches Details"));
 		String successfulMessage = SuccessfulMessage.getText();
 		Assert.assertEquals(successfulMessage, "All Existing Batches Details");
 	}
 
-	@Given("Admin is on Add tab of ADD Edit batches page  (admin) by clicking on Add Batch in Manage Batches Page (admin)")
+	@Given("Admin is on Add tab of ADD Edit batches page admin by clicking on Add Batch in Manage Batches Page admin")
 	public void admin_is_on_add_tab_of_add_edit_batches_page_admin_by_clicking_on_add_batch_in_manage_batches_page_admin() {
 		driver.findElement(By.id("Add)")).click();
 	}
 
-	@When("Admin clicks on submit button after entering Batch Name, Batch Description,select Batch Status, enters BatchNo. of classes.")
+	@When("Admin clicks on submit button after entering Batch Name Batch Description select Batch Status enters BatchNo. of classes")
 	public void admin_clicks_on_submit_button_after_entering_batch_name_batch_description_select_batch_status_enters_batch_no_of_classes() {
 
 		// Admin enters Batch name, Batch Description, Status, BatchNo.of classes and
@@ -156,7 +164,7 @@ public class Batch {
 
 	}
 
-	@Then("Created Batch details will be displayed in Manage Batches Page (Admin) with auto generated Created Date and Modified date in MM/DD/YY format.")
+	@Then("Created Batch details will be displayed in Manage Batches Page Admin with auto generated Created Date and Modified date in MM\\\\/DD\\\\/YY format")
 	public void created_batch_details_will_be_displayed_in_manage_batches_page_admin_with_auto_generated_created_date_and_modified_date_in_mm_dd_yy_format() {
 
 		int actualcount = bcount();
@@ -166,12 +174,12 @@ public class Batch {
 		Assert.assertEquals(actualcount + 1, expcount);
 	}
 
-	@Given("Admin is on Edit tab of ADD Edit batches page  (admin) by clicking on edit icon")
+	@Given("Admin is on Edit tab of ADD Edit batches page admin by clicking on edit icon")
 	public void admin_is_on_edit_tab_of_add_edit_batches_page_admin_by_clicking_on_edit_icon() {
 		driver.findElement(By.id("Edit")).click();
 	}
 
-	@When("Admin clicks on submit button after updating Batch Name, Batch Description,select Batch Status, Baych No. of classes")
+	@When("Admin clicks on submit button after updating Batch Name Batch Description select Batch Status Baych No. of classes")
 	public void admin_clicks_on_submit_button_after_updating_batch_name_batch_description_select_batch_status_baych_no_of_classes() {
 
 		// Admin enters Batch name, Batch Description, Batch status, BatchNo.of classes,
@@ -197,14 +205,14 @@ public class Batch {
 
 	}
 
-	@Then("Updated Batch details will be displayed in Manage Batches Page (Admin) screen with same autogenerated creation date and  different Modified date in MM\\/DD\\/YY format")
+	@Then("Updated Batch details will be displayed in Manage Batches Page Admin screen with same autogenerated creation date and  different Modified date in MM\\/DD\\/YY format")
 	public void updated_batch_details_will_be_displayed_in_manage_batches_page_admin_screen_with_same_autogenerated_creation_date_and_different_modified_date_in_mm_dd_yy_format() {
 		// Edited Batch Name should be displayed
 		boolean isElementDisplayed = driver.findElement(By.xpath("//*[text()='SDET02']")).isDisplayed();
 		Assert.assertEquals(isElementDisplayed, "Selenium_1");
 	}
 
-	@Given("Admin is on Manage Batches Page(admin) screen")
+	@Given("Admin is on Manage Batches Page admin screen")
 	public void admin_is_on_manage_batches_page_admin_screen() {
 		{
 			Batches.click();
@@ -217,7 +225,7 @@ public class Batch {
 		driver.findElement(By.id("btnDelBatch")).click();
 	}
 
-	@Then("Batch will be deleted from the Batches List in Manage Batches Page (admin)")
+	@Then("Batch will be deleted from the Batches List in Manage Batches Page admin")
 	public void batch_will_be_deleted_from_the_batches_list_in_manage_batches_page_admin() {
 
 		int actualcount = bcount();
@@ -226,4 +234,5 @@ public class Batch {
 		// Asserting Batches List program
 		Assert.assertEquals(actualcount - 1, expcount);
 	}
-}
+	
+	}

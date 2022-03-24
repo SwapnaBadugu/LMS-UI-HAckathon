@@ -11,16 +11,23 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
-import stepdef.Launch;
+import stepdef.Login;
 
-public class Actions extends Launch {
+
+
+public class Actions {
 	WebDriver driver;
+	public Actions() throws Exception {
+		Login login=new Login();
+		login.driver=driver;
+		}
+
 
 	public void takeScreenshot(String fileName) throws IOException {
 		// 1.take screenshot and store it as a file format:
 		File file = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		// now copy the screenshot to desired location using copyFile method:
-		FileUtils.copyFile(file, new File("C:\\Learnings\\Java\\NumpyNinja.LMSUI\\Screenshots" + fileName + ".jpg"));
+		FileUtils.copyFile(file, new File("C:\\Users\\ramba\\eclipse-workspace2\\LMS_UI_HACKTHON\\Screenshots" + fileName + ".jpg"));
 	}
 
 	// Selecting the calenderdate
@@ -64,3 +71,4 @@ public class Actions extends Launch {
 	}
 
 }
+

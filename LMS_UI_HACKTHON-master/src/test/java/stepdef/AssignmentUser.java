@@ -1,5 +1,4 @@
 package stepdef;
-
 import java.io.IOException;
 import java.time.Duration;
 import org.openqa.selenium.By;
@@ -17,6 +16,10 @@ import io.cucumber.java.en.When;
 
 public class AssignmentUser {
 	WebDriver driver;
+	public AssignmentUser() throws Exception {
+		Login login=new Login();
+		login.driver=driver;
+		}
 	Actions actions = new Actions();
 
 	@Given("User is on Manage Submissions user page")

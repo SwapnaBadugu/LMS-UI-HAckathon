@@ -18,6 +18,10 @@ import io.cucumber.java.en.When;
 public class AssignmentAdmin {
 
 	WebDriver driver;
+	public AssignmentAdmin() throws Exception {
+		Login login=new Login();
+		login.driver=driver;
+		}
 	Actions actions = new Actions();
 	WebElement Assignment = driver.findElement(By.linkText("Manage Assignment"));
 
@@ -427,3 +431,4 @@ public class AssignmentAdmin {
 
 	}
 }
+
